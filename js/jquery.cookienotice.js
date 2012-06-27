@@ -15,7 +15,8 @@
 					content: $("<p>We use cookies to give you the best possible online experience. If you continue browsing, we'll assume you are happy for your web browser to receive all cookies from our website.</p>"),
 					position: "bottom",
 					transition: 1000,
-					delay: 500
+					delay: 500,
+					overlay: true
 				}
 				var opts = $.extend(defaults, options);
 				
@@ -78,6 +79,15 @@
 				var animation = {};
 				animation[data.opts.position] = 0;
 				data.notice.animate(animation, data.opts.transition);
+				
+				// Animate body margin at same time if notice isn't an overlay
+				if(!data.opts.overlay){
+					var existing_margin = parseInt($this.css("margin-"+data.opts.position).replace('px', ''), 10);
+					existing_margin == 'NaN' ? existing_margin = 0 : existing_margin = existing_margin;
+					var animation = {};
+					animation['margin-'+data.opts.position] = existing_margin + data.notice.outerHeight(true);
+					$this.animate(animation, data.opts.transition);
+				}
 			},data.opts.delay);	
 			
 			$this.data('cookieNotice', data);
@@ -93,6 +103,15 @@
 			var animation = {};
 			animation[data.opts.position] = -data.notice.outerHeight(true);
 			data.notice.animate(animation, data.opts.transition);
+			
+			// Animate body margin at same time if notice isn't an overlay
+			if(!data.opts.overlay){
+				var existing_margin = parseInt($this.css("margin-"+data.opts.position).replace('px', ''), 10);
+				existing_margin == 'NaN' ? existing_margin = 0 : existing_margin = existing_margin;
+				var animation = {};
+				animation['margin-'+data.opts.position] = existing_margin - data.notice.outerHeight(true);
+				$this.animate(animation, data.opts.transition);
+			}
 			
 			methods.setCookie(data.opts.cookieName, false, 365, "/");
 			
