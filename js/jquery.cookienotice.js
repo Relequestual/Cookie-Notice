@@ -1,5 +1,5 @@
 // jQuery Cookie Notice plugin
-// © Bite CP 2012
+// ï¿½ Bite CP 2012
 
 (function($){
 
@@ -48,15 +48,15 @@
 			if(data.notice == undefined){
 				// Generate notice
 				data.notice = $("<div />", {
-					class: "cookie-notice",
+					"class": "cookie-notice",
 					html: $("<div />", {
-						class: "cookie-notice-inner",
+						"class: "cookie-notice-inner",
 						html: data.opts.content
 					})
 				});
 				
 				var closeNotice = $("<a />", {
-					class: "close-notice",
+					"class": "close-notice",
 					href: "#",
 					text: "Close notice"
 				});
