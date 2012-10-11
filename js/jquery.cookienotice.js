@@ -50,7 +50,7 @@
 				data.notice = $("<div />", {
 					"class": "cookie-notice",
 					html: $("<div />", {
-						"class: "cookie-notice-inner",
+						"class"": "cookie-notice-inner",
 						html: data.opts.content
 					})
 				});
